@@ -17,8 +17,12 @@ alias !='sudo'
 
 # Ruby aliases
 alias gems='gem list'
-alias r='ruby'
+#alias r='ruby'
 alias rw='ruby -w'
+
+# rails
+alias r="rails"
+alias migrate="rake db:migrate && rake db:test:prepare"
 
 #
 # Git
@@ -42,7 +46,7 @@ complete -o default -o nospace -F _git_diff gd
 alias gc='git commit -v'
 alias gca='git commit -av'
 
-alias gs='git status -sb'
+alias gs='git status -s'
 
 alias gb='git branch -v'
 complete -o default -o nospace -F _git_branch gb
@@ -54,6 +58,8 @@ complete -o default -o nospace -F _git_log glog
 
 alias gm='git merge --no-ff'
 complete -o default -o nospace -F _git_merge gm
+
+alias gpph="git pull && git push && git push heroku"
 
 function gco {
   if [ -z "$1" ]; then
