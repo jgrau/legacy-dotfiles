@@ -46,7 +46,7 @@ complete -o default -o nospace -F _git_diff gd
 alias gc='git commit -v'
 alias gca='git commit -av'
 
-alias gs='git status -s'
+alias gs='git status'
 
 alias gb='git branch -v'
 complete -o default -o nospace -F _git_branch gb
@@ -60,6 +60,7 @@ alias gm='git merge --no-ff'
 complete -o default -o nospace -F _git_merge gm
 
 alias gpph="git pull && git push && git push heroku"
+alias gpp="git pull && git push"
 
 function gco {
   if [ -z "$1" ]; then
@@ -89,9 +90,19 @@ alias ...='cd ../..'
 alias ....='cd ../../../'
 
 # Work
-alias work='cd ~/Code/Work/'
+alias work='cd ~/Sites/'
 alias ~='cd ~'
 
 # Handy 
 alias clipboard="xclip -selection c"
 alias svim="sudo vim"
+
+# Textmate
+alias et='mate . &'
+alias ett='mate app config lib db public spec doc features test Rakefile Capfile Todo Gemfile &'
+alias vtt='mvim app config lib db public spec doc features test Rakefile Capfile Todo Gemfile &'
+alias etp='mate app config lib db public spec test vendor/plugins vendor/gems Rakefile Capfile Todo &'
+alias etts='mate app config lib db public script spec test vendor/plugins vendor/gems Rakefile Capfile Todo &'
+
+# reload bash aliases
+alias reload="source ~/.bash_profile"

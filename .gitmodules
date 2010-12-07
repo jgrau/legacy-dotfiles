@@ -43,3 +43,6 @@
 [submodule "home/.vim/bundle/javascript"]
 	path = home/.vim/bundle/javascript
 	url = http://github.com/pangloss/vim-javascript.git
+[submodule "home/.vim/bundle/surroud"]
+	path = home/.vim/bundle/surroud
+	url = https://github.com/tpope/vim-surround.git

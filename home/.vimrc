@@ -3,7 +3,7 @@
 "
 
 " Setup Bundle Support {
-  call pathogen#runtime_append_all_bundles()
+   call pathogen#runtime_append_all_bundles()
 " }
 
 " Basics {
@@ -21,20 +21,35 @@
   " No needs for backups, I have Git for that
   set noswapfile 
   set nobackup
+
+  " Source the vimrc file after saving it
+  if has("autocmd")
+    autocmd bufwritepost .vimrc source $MYVIMRC
+  endif
 " }
 
 " Vim UI {
-  syntax on " Enable syntax highlightation.¨
+  " syntax on " Enable syntax highlightation.¨
 
-  color mustang " Default colorscheme
+  " color mustang " Default colorscheme
 
-  set t_Co=256 " Terminal colors
+  " set t_Co=256 " Terminal colors
+
+  if &t_Co >= 256 || has("gui_running")
+    colorscheme railscasts
+  endif
+
+  if &t_Co > 2 || has("gui_running")
+  " switch syntax highlighting on, when the terminal has colors
+    syntax on
+  endif
 
   set ruler " Enable cursor position
   set showcmd  " Show incomplete CMDS at the bottom
   
   set showmatch " Show matching of: () [] {}
   set matchpairs+=<:> " Match <> (HTML)
+  " set number  " always show line numbers"
 
   " Searching {
     set ignorecase " Case insensitive search
@@ -50,11 +65,16 @@
   au FocusLost * :wa " Save when losing focus
 
   set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+  set pastetoggle=<F2>
 
   " GVim {
     if has("gui_running")
       color railscasts " GUI Colorscheme
       set guifont=Monaco\ 9 " Set the font:
+      "set guifont=Inconsolata:h14
+      "colorscheme baycomb
+      "colorscheme mustang
+      "colorscheme molokai"
 
       " GVIm options {
         set guioptions-=m " Remove menu bar
@@ -75,7 +95,7 @@
       " }
 
       " Autoload NERDTree in Gui
-      autocmd VimEnter * NERDTree ~/Code
+      " autocmd VimEnter * NERDTree ~/Sites
 
       " Window {
         set lines=65
@@ -89,15 +109,16 @@
     if has("gui_macvim")
       macmenu &File.New\ Tab key=<nop>
       map <D-t> :CommandT<CR>
-      set guifont=Monaco:h10
+      set guifont=Monaco:h12
     endif
   " }
 " }
 
 " Formatting {
   " Be smart, and awesome, about indentation
-  set autoindent " Indent at the same level as previous line
+
   set smartindent
+  set copyindent
   set smarttab
   set expandtab " Tabs are spaces
 
@@ -134,7 +155,15 @@
   " Quickly edit/reload the vimrc file
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
   nmap <silent> <leader>sv :so $MYVIMRC<CR>
+  nmap ,t :CommandT<CR>
 
+  " Quick yanking to the end of the line
+  nmap Y y$
+
+  " Jump to matching pairs easily, with Tab
+  nnoremap <Tab> %
+  vnoremap <Tab> %
+    
   " Key mappings
   :noremap ,d :bd<CR>
   cmap w!! w !sudo tee %
@@ -144,10 +173,12 @@
 
 " Plugins {
   " NerdTree {
-    let NERDTreeChDirMode = 1
-    let NERDTreeWinSize=20
+    " let NERDTreeChDirMode = 1
+    " let NERDTreeWinSize=20
+    let NERDTreeQuitOnOpen=1
 
-    :noremap ,n :NERDTreeToggle<CR>
+
+    " :noremap ,n :NERDTreeToggle<CR>
   " }
 
   " Gist {

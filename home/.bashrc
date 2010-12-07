@@ -10,10 +10,11 @@
 set -o vi
 
 # Default browser
-BROWSER="chromium-browser" # Default browser
+# BROWSER="chromium-browser" # Default browser
 
 # Setting up editor 
-EDITOR="vim" # Default editor
+#export EDITOR='mvim -f -c "au VimLeave * !open -a Terminal"'
+EDITOR="mvim" # Default editor
 GIT_EDITOR=$EDITOR
 
 # Add user bins to path
