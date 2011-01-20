@@ -133,6 +133,8 @@
 " }
 
 " Key Mapping {
+  " Press i to enter insert mode, and ii to exit.
+  imap ii <Esc>
   map <S-C-J> <C-W>j<C-W>_
   map <S-C-K> <C-W>k<C-W>_
   map <S-C-L> <C-W>l<C-W>_
