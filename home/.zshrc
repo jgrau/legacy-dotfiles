@@ -23,4 +23,5 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 alias work="cd ~/Sites $1"
 alias reload="source ~/.zshrc"
+setopt nonomatch
 export PATH=$PATH:~/bin
