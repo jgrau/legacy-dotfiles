@@ -16,7 +16,7 @@ export ZSH_THEME="macovsky"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew cap gem github lighthouse osx rails ruby textmate rvm git-flow git-flow-completion)
+plugins=(git brew cap gem github lighthouse osx ruby textmate git-flow git-flow-completion heroku powder rails3 rake)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -24,4 +24,4 @@ source $ZSH/oh-my-zsh.sh
 alias work="cd ~/Sites $1"
 alias reload="source ~/.zshrc"
 setopt nonomatch
-export PATH=$PATH:~/bin
+export PATH=/usr/local/bin:$PATH:~/bin

@@ -115,6 +115,8 @@
     if has("gui_macvim")
       macmenu &File.New\ Tab key=<nop>
       map <D-t> :CommandT<CR>
+      set wildignore+=vendor/bundle/** 
+      set wildignore+=bin/** 
       set guifont=Monaco:h12
       set transparency=7
     endif
@@ -209,3 +211,6 @@
     map <Leader>gs :Gstatus
   " }
 " }
+
+" For some reason this makes command line gems work. RVM issue i think
+set shell=/bin/sh

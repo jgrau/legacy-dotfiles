@@ -9,3 +9,6 @@
 .config/vlc/*
 .gitconfig
 .vim/.netrwhist
+.DS_Store
+vendor/bundle
+.DS_Store
