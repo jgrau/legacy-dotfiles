@@ -55,6 +55,6 @@
 [submodule "home/.vim/bundle/vim-cucumber"]
 	path = home/.vim/bundle/vim-cucumber
 	url = https://github.com/tpope/vim-cucumber.git
-[submodule "home/.vim/bundle/vim-bundler"]
-	path = home/.vim/bundle/vim-bundler
+[submodule "home/.vim/bundle/bundler"]
+	path = home/.vim/bundle/bundler
 	url = https://github.com/tpope/vim-bundler.git
