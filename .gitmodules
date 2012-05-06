@@ -15,7 +15,7 @@
 	url = http://github.com/tpope/vim-markdown.git
 [submodule "home/.vim/bundle/rails"]
 	path = home/.vim/bundle/rails
-	url = http://github.com/tpope/vim-rails.git
+	url = https://github.com/tpope/vim-rails.git
 [submodule "home/.vim/bundle/snipmate"]
 	path = home/.vim/bundle/snipmate
 	url = http://github.com/msanders/snipmate.vim.git
