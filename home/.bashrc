@@ -38,3 +38,7 @@ export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
   -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export PATH=/Users/jgrau/bin/Sencha/Cmd/3.0.2.288:$PATH
+
+export SENCHA_CMD_3_0_0="/Users/jgrau/bin/Sencha/Cmd/3.0.2.288"

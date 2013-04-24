@@ -25,7 +25,7 @@
   set history=1000 " Keep (a lot) more history
 
   " No needs for backups, I have Git for that
-  set noswapfile 
+  set noswapfile
   set nobackup
 
   " Source the vimrc file after saving it
@@ -52,7 +52,7 @@
 
   set ruler " Enable cursor position
   set showcmd  " Show incomplete CMDS at the bottom
-  
+
   set showmatch " Show matching of: () [] {}
   set matchpairs+=<:> " Match <> (HTML)
   " set number  " always show line numbers"
@@ -115,8 +115,8 @@
     if has("gui_macvim")
       macmenu &File.New\ Tab key=<nop>
       map <D-t> :CommandT<CR>
-      set wildignore+=vendor/bundle/** 
-      set wildignore+=bin/** 
+      set wildignore+=vendor/bundle/**
+      set wildignore+=bin/**
       set guifont=Monaco:h12
       set transparency=7
     endif
@@ -174,7 +174,7 @@
   " Jump to matching pairs easily, with Tab
   nnoremap <Tab> %
   vnoremap <Tab> %
-    
+
   " Key mappings
   :noremap ,d :bd<CR>
   cmap w!! w !sudo tee %
@@ -211,6 +211,11 @@
     map <Leader>gs :Gstatus
   " }
 " }
+
+cnoremap mk. !mkdir -p <c-r>=expand("%:h")<cr>/
+
+" Remove whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
 
 " For some reason this makes command line gems work. RVM issue i think
 set shell=/bin/sh
