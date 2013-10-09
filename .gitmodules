@@ -70,3 +70,9 @@
 [submodule "home/.vim/bundle/toggle"]
 	path = home/.vim/bundle/toggle
 	url = https://github.com/vim-scripts/Toggle.git
+[submodule "home/.vim/bundle/tabular"]
+	path = home/.vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
+[submodule "home/.vim/plugin/rspec.vim"]
+	path = home/.vim/plugin/rspec.vim
+	url = https://github.com/thoughtbot/vim-rspec.git
