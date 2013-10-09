@@ -113,7 +113,7 @@
 
   " MVIM {
     if has("gui_macvim")
-      macmenu &File.New\ Tab key=<nop>
+      " macmenu &File.New\ Tab key=<nop>
       map <D-t> :CommandT<CR>
       set wildignore+=vendor/bundle/**
       set wildignore+=bin/**
@@ -219,3 +219,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " For some reason this makes command line gems work. RVM issue i think
 set shell=/bin/sh
+
+" Test
+map <Leader>r :Rrunner<CR>

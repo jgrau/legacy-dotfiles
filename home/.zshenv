@@ -1,1 +1,1 @@
-eval "$(rbenv init -)"
+source /opt/boxen/env.sh
