@@ -24,4 +24,11 @@ source $ZSH/oh-my-zsh.sh
 alias work="cd ~/Sites $1"
 alias reload="source ~/.zshrc"
 setopt nonomatch
-export PATH=/usr/local/bin:$PATH:~/bin
+export PATH=/usr/local/bin:/usr/local/share/npm/bin:$PATH:~/bin
+export PATH=$PATH:/Users/jgrau/pear/bin
+
+# Z Jumper
+. ~/bin/z/z.sh
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

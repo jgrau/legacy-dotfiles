@@ -61,3 +61,12 @@
 [submodule "home/.vim/bundle/ruby"]
 	path = home/.vim/bundle/ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "home/.vim/bundle/funcoo"]
+	path = home/.vim/bundle/funcoo
+	url = https://github.com/rizzatti/funcoo.vim.git
+[submodule "home/.vim/bundle/dash"]
+	path = home/.vim/bundle/dash
+	url = https://github.com/rizzatti/dash.vim.git
+[submodule "home/.vim/bundle/toggle"]
+	path = home/.vim/bundle/toggle
+	url = https://github.com/vim-scripts/Toggle.git
