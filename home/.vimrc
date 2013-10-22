@@ -225,3 +225,6 @@ set shell=/bin/sh
 
 " Test
 map <Leader>r :Rrunner<CR>
+
+" Ruby block told me to
+runtime macros/matchit.vim
