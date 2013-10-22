@@ -16,7 +16,7 @@ export ZSH_THEME="macovsky"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(hub git brew cap gem github lighthouse osx ruby textmate git-flow git-flow-completion heroku powder rails3 rake)
+plugins=(hub git brew cap gem github lighthouse osx ruby textmate git-flow git-flow-completion heroku powder rails3 rake vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 

@@ -42,7 +42,8 @@
   " set t_Co=256 " Terminal colors
 
   if &t_Co >= 256 || has("gui_running")
-    colorscheme railscasts
+    colorscheme solarized
+    set background=dark
   endif
 
   if &t_Co > 2 || has("gui_running")
@@ -75,12 +76,17 @@
 
   " GVim {
     if has("gui_running")
-      color railscasts " GUI Colorscheme
-      set guifont=Monaco\ 9 " Set the font:
+      color solarized " GUI Colorscheme
+      set background=dark
+      " set guifont=Monaco\ 9 " Set the font:
       "set guifont=Inconsolata:h14
+      " set guifont=Inconsolata\ for\ Powerline:h16
+      set guifont=Menlo\ Regular\ for\ Powerline:h12
       "colorscheme baycomb
       "colorscheme mustang
       "colorscheme molokai"
+      " Start full screen
+      set lines=999 columns=9999
 
       " GVIm options {
         set guioptions-=m " Remove menu bar
@@ -103,11 +109,6 @@
       " Autoload NERDTree in Gui
       " autocmd VimEnter * NERDTree ~/Sites
 
-      " Window {
-        set lines=65
-        set columns=115
-        winpos 1270 0
-      " }
     endif
   " }
 
@@ -117,7 +118,9 @@
       map <D-t> :CommandT<CR>
       set wildignore+=vendor/bundle/**
       set wildignore+=bin/**
-      set guifont=Monaco:h12
+      " set guifont=Monaco:h12
+      " set guifont=Inconsolata\ for\ Powerline:h16
+      set guifont=Menlo\ Regular\ for\ Powerline:h12
       set transparency=7
     endif
   " }

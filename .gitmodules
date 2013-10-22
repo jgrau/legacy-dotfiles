@@ -76,3 +76,9 @@
 [submodule "home/.vim/plugin/rspec.vim"]
 	path = home/.vim/plugin/rspec.vim
 	url = https://github.com/thoughtbot/vim-rspec.git
+[submodule "home/.vim/bundle/colors-solarized"]
+	path = home/.vim/bundle/colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized
+[submodule "home/.vim/bundle/powerline"]
+	path = home/.vim/bundle/powerline
+	url = https://github.com/Lokaltog/vim-powerline
