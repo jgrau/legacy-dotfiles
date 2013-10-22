@@ -1,0 +1,18 @@
+before 'cd ~/Sites/gomore-web'
+run "gitx"
+run "mvim ."
+run "clear"
+
+window do
+  before 'cd ~/Sites/gomore-web'
+
+  tab "zeus" do
+    run "zeus start"
+  end
+  tab "zeus server" do
+    run "zeus server"
+  end
+  tab "console" do
+    run "zeus console"
+  end
+end
