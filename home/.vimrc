@@ -3,7 +3,8 @@
 "
 
 " Setup Bundle Support {
-   call pathogen#runtime_append_all_bundles()
+     call pathogen#runtime_append_all_bundles()
+     call pathogen#helptags()
 " }
 
 " Basics {
@@ -213,6 +214,16 @@
     map <Leader>gc :Gcommit
     map <Leader>gs :Gstatus
   " }
+
+  " Surround {
+    let b:surround_{char2nr('=')} = "<%= \r %>"
+    let b:surround_{char2nr('-')} = "<% \r %>"
+  " }
+  "
+  set nocompatible
+  if has("autocmd")
+    filetype indent plugin on
+  endif
 " }
 
 cnoremap mk. !mkdir -p <c-r>=expand("%:h")<cr>/
@@ -224,8 +235,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 set shell=/bin/sh
 
 " Test
-map <Leader>r :Rrunner<CR>
-map <Leader>R :.Rrunner<CR>
+map <Leader>r :wa<CR>:Rrunner<CR>
+map <Leader>R :wa<CR>:.Rrunner<CR>
 
 " Ruby block told me to
 runtime macros/matchit.vim
