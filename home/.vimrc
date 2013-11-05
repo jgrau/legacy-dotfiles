@@ -3,7 +3,7 @@
 "
 
 " Setup Bundle Support {
-     call pathogen#runtime_append_all_bundles()
+     execute pathogen#infect()
      call pathogen#helptags()
 " }
 
@@ -220,6 +220,16 @@
     let b:surround_{char2nr('-')} = "<% \r %>"
   " }
   "
+  " Robocop {
+    let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+    let g:syntastic_quiet_warnings = 0
+  " }
+
+  " Airline {
+    let g:airline_powerline_fonts = 1
+
+  " }
+
   set nocompatible
   if has("autocmd")
     filetype indent plugin on
@@ -240,3 +250,5 @@ map <Leader>R :wa<CR>:.Rrunner<CR>
 
 " Ruby block told me to
 runtime macros/matchit.vim
+
+map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
