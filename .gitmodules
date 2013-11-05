@@ -97,3 +97,12 @@
 [submodule "home/.vim/bundle/textobj-user"]
 	path = home/.vim/bundle/textobj-user
 	url = https://github.com/kana/vim-textobj-user.git
+[submodule "home/.vim/bundle/syntastic"]
+	path = home/.vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "home/.vim/bundle/unimpaired"]
+	path = home/.vim/bundle/unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "home/.vim/bundle/airline"]
+	path = home/.vim/bundle/airline
+	url = https://github.com/bling/vim-airline
