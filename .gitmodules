@@ -67,15 +67,9 @@
 [submodule "home/.vim/bundle/toggle"]
 	path = home/.vim/bundle/toggle
 	url = https://github.com/vim-scripts/Toggle.git
-[submodule "home/.vim/bundle/tabular"]
-	path = home/.vim/bundle/tabular
-	url = https://github.com/godlygeek/tabular.git
 [submodule "home/.vim/bundle/colors-solarized"]
 	path = home/.vim/bundle/colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized
-[submodule "home/.vim/bundle/powerline"]
-	path = home/.vim/bundle/powerline
-	url = https://github.com/Lokaltog/vim-powerline
 [submodule "home/.vim/bundle/solarized"]
 	path = home/.vim/bundle/solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
