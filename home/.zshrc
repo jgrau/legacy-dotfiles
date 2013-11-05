@@ -32,3 +32,6 @@ export PATH=$PATH:/Users/jgrau/pear/bin
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# added by travis gem
+[ -f /Users/jgrau/.travis/travis.sh ] && source /Users/jgrau/.travis/travis.sh
