@@ -220,14 +220,24 @@
     let b:surround_{char2nr('-')} = "<% \r %>"
   " }
   "
-  " Robocop {
+  " Syntastic {
     let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+    let g:syntastic_coffee_coffeelint_args="-f .coffeelint.json"
     let g:syntastic_quiet_warnings = 0
+    let g:syntastic_mode_map = { 'passive_filetypes': ['ruby'] }
   " }
 
   " Airline {
     let g:airline_powerline_fonts = 1
-
+  " }
+  "
+  " Tabular {
+  if exists(":Tabularize")
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
+  endif
   " }
 
   set nocompatible
