@@ -3,7 +3,8 @@
 "
 
 " Setup Bundle Support {
-   call pathogen#runtime_append_all_bundles()
+     execute pathogen#infect()
+     call pathogen#helptags()
 " }
 
 " Basics {
@@ -213,6 +214,36 @@
     map <Leader>gc :Gcommit
     map <Leader>gs :Gstatus
   " }
+
+  " Surround {
+    let b:surround_{char2nr('=')} = "<%= \r %>"
+    let b:surround_{char2nr('-')} = "<% \r %>"
+  " }
+  "
+  " Syntastic {
+    let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+    let g:syntastic_coffee_coffeelint_args="-f .coffeelint.json"
+    let g:syntastic_quiet_warnings = 0
+    let g:syntastic_mode_map = { 'passive_filetypes': ['ruby'] }
+  " }
+
+  " Airline {
+    let g:airline_powerline_fonts = 1
+  " }
+  "
+  " Tabular {
+  if exists(":Tabularize")
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
+  endif
+  " }
+
+  set nocompatible
+  if has("autocmd")
+    filetype indent plugin on
+  endif
 " }
 
 cnoremap mk. !mkdir -p <c-r>=expand("%:h")<cr>/
@@ -224,8 +255,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 set shell=/bin/sh
 
 " Test
-map <Leader>r :Rrunner<CR>
-map <Leader>R :.Rrunner<CR>
+map <Leader>r :wa<CR>:Rrunner<CR>
+map <Leader>R :wa<CR>:.Rrunner<CR>
 
 " Ruby block told me to
 runtime macros/matchit.vim
+
+map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
