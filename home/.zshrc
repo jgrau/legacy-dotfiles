@@ -16,7 +16,7 @@ export ZSH_THEME="macovsky"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(hub git brew cap gem github lighthouse osx ruby textmate git-flow git-flow-completion heroku powder rails3 rake vi-mode)
+plugins=(git git-extras brew cap gem github lighthouse osx ruby textmate git-flow heroku powder rails3 rake vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -26,9 +26,6 @@ alias reload="source ~/.zshrc"
 setopt nonomatch
 export PATH=/usr/local/bin:/usr/local/share/npm/bin:$PATH:~/bin
 export PATH=$PATH:/Users/jgrau/pear/bin
-
-# Z Jumper
-. ~/bin/z/z.sh
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
