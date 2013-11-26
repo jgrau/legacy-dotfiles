@@ -1,7 +1,7 @@
 before 'cd ~/Sites/gomore-web'
 run "gitx"
 run "mvim ."
-run "clear"
+run "exit"
 
 window do
   before 'cd ~/Sites/gomore-web'
