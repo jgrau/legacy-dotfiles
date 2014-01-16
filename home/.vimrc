@@ -116,7 +116,7 @@
   " MVIM {
     if has("gui_macvim")
       " macmenu &File.New\ Tab key=<nop>
-      map <D-t> :CommandT<CR>
+      " map <D-t> :CommandT<CR>
       set wildignore+=vendor/bundle/**
       set wildignore+=bin/**
       " set guifont=Monaco:h12
@@ -170,7 +170,7 @@
   " Quickly edit/reload the vimrc file
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
   nmap <silent> <leader>sv :so $MYVIMRC<CR>
-  nmap ,t :CommandT<CR>
+  " nmap ,t :CommandT<CR>
 
   " Quick yanking to the end of the line
   nmap Y y$
@@ -262,3 +262,6 @@ map <Leader>R :wa<CR>:.Rrunner<CR>
 runtime macros/matchit.vim
 
 map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
+
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_cmd = 'CtrlP'
