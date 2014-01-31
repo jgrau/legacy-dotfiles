@@ -32,3 +32,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # added by travis gem
 [ -f /Users/jgrau/.travis/travis.sh ] && source /Users/jgrau/.travis/travis.sh
+
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
