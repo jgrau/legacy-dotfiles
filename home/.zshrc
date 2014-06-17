@@ -1,11 +1,8 @@
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-
 source "$HOME/.antigen/antigen.zsh"
-# source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
-#
+
 antigen bundles <<EOBUNDLES
   # Git and github autocompletions and aliases
   git
@@ -43,7 +40,6 @@ antigen theme desyncr/zshrc themes/af-magic-mod
 # Tell antigen that you're done.
 antigen apply
 
-#
 # Customize to your needs...
 alias mvim="reattach-to-user-namespace mvim"
 alias vim="reattach-to-user-namespace vim"
