@@ -1,7 +1,7 @@
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 source "$HOME/.antigen/antigen.zsh"
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+# source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh

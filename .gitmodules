@@ -106,6 +106,6 @@
 [submodule "home/.oh-my-zsh"]
 	path = home/.oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule ".antigen"]
+[submodule "home/.antigen"]
 	path = home/.antigen
 	url = https://github.com/zsh-users/antigen.git
