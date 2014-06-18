@@ -255,8 +255,11 @@ autocmd BufWritePre * :%s/\s\+$//e
 set shell=/bin/sh
 
 " Test
-map <Leader>r :wa<CR>:Rrunner<CR>
-map <Leader>R :wa<CR>:.Rrunner<CR>
+" map <Leader>r :wa<CR>:Rrunner<CR>
+" map <Leader>R :wa<CR>:.Rrunner<CR>
+let g:vroom_write_all = 1
+let g:vroom_use_spring = 1
+let g:vroom_test_unit_command = 'testunit'
 
 " Ruby block told me to
 runtime macros/matchit.vim
