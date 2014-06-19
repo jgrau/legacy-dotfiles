@@ -63,7 +63,7 @@
     set ignorecase " Case insensitive search
     set smartcase " Case sensitive when uppercase is present
     set incsearch " Search as you type
-    set hlsearch " Highlight search matches
+    " set hlsearch " Highlight search matches
   " }
 
   au FocusLost * :wa " Save when losing focus
