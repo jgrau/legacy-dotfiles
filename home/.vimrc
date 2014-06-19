@@ -1,7 +1,3 @@
-" A lot stolen from 'The Ultimate .Vimrc File'
-" http://spf13.com/post/ultimate-vim-config
-"
-
 " Setup Bundle Support {
      execute pathogen#infect()
      call pathogen#helptags()
@@ -33,15 +29,18 @@
   if has("autocmd")
     autocmd bufwritepost .vimrc source $MYVIMRC
   endif
+  "
+  " Remove whitespace on save
+  autocmd BufWritePre * :%s/\s\+$//e
+
+  " For some reason this makes command line gems work. RVM issue i think
+  set shell=/bin/sh
+
+  map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
+
 " }
 
 " Vim UI {
-  " syntax on " Enable syntax highlightation.¨
-
-  " color mustang " Default colorscheme
-
-  " set t_Co=256 " Terminal colors
-
   if &t_Co >= 256 || has("gui_running")
     colorscheme solarized
     set background=dark
@@ -54,7 +53,8 @@
 
   set ruler " Enable cursor position
   set showcmd  " Show incomplete CMDS at the bottom
-
+  set autoread " Auto read when file is changed
+  set hidden " Hide buffers, rather than close them
   set showmatch " Show matching of: () [] {}
   set matchpairs+=<:> " Match <> (HTML)
   " set number  " always show line numbers"
@@ -63,12 +63,8 @@
     set ignorecase " Case insensitive search
     set smartcase " Case sensitive when uppercase is present
     set incsearch " Search as you type
-    "set hlsearch " Highlight search matches
+    set hlsearch " Highlight search matches
   " }
-
-  set autoread " Auto read when file is changed
-
-  set hidden " Hide buffers, rather than close them
 
   au FocusLost * :wa " Save when losing focus
 
@@ -79,15 +75,8 @@
     if has("gui_running")
       color solarized " GUI Colorscheme
       set background=dark
-      " set guifont=Monaco\ 9 " Set the font:
-      "set guifont=Inconsolata:h14
-      " set guifont=Inconsolata\ for\ Powerline:h16
       set guifont=Menlo\ Regular\ for\ Powerline:h12
-      "colorscheme baycomb
-      "colorscheme mustang
-      "colorscheme molokai"
-      " Start full screen
-      set lines=999 columns=9999
+      set lines=999 columns=9999 " Start full screen
 
       " GVIm options {
         set guioptions-=m " Remove menu bar
@@ -99,28 +88,20 @@
 
       " Title {
         if has('title')
-            set titlestring=
+          set titlestring=
           set titlestring+=%f\                                              " file name
           set titlestring+=%h%m%r%w                                         " flags
           set titlestring+=\ -\ %{v:progname}                               " program name
           set titlestring+=\ -\ %{substitute(getcwd(),\ $HOME,\ '~',\ '')}  " working directory
         endif
       " }
-
-      " Autoload NERDTree in Gui
-      " autocmd VimEnter * NERDTree ~/Sites
-
     endif
   " }
 
   " MVIM {
     if has("gui_macvim")
-      " macmenu &File.New\ Tab key=<nop>
-      " map <D-t> :CommandT<CR>
       set wildignore+=vendor/bundle/**
       set wildignore+=bin/**
-      " set guifont=Monaco:h12
-      " set guifont=Inconsolata\ for\ Powerline:h16
       set guifont=Menlo\ Regular\ for\ Powerline:h12
       set transparency=7
     endif
@@ -129,7 +110,6 @@
 
 " Formatting {
   " Be smart, and awesome, about indentation
-
   set smartindent
   set copyindent
   set smarttab
@@ -162,15 +142,14 @@
   map <S-L> gt
 
   " Shift key fixes
-  cmap W w
-  cmap WQ wq
-  cmap wQ wq
-  cmap Q q
+  " cmap W w
+  " cmap WQ wq
+  " cmap wQ wq
+  " cmap Q q
 
   " Quickly edit/reload the vimrc file
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
   nmap <silent> <leader>sv :so $MYVIMRC<CR>
-  " nmap ,t :CommandT<CR>
 
   " Quick yanking to the end of the line
   nmap Y y$
@@ -188,12 +167,12 @@
 
 " Plugins {
   " NerdTree {
-    " let NERDTreeChDirMode = 1
-    " let NERDTreeWinSize=20
-    " let NERDTreeQuitOnOpen=1
+    let NERDTreeChDirMode = 1
+    let NERDTreeWinSize=20
+    let NERDTreeQuitOnOpen=1
 
 
-    " :noremap ,n :NERDTreeToggle<CR>
+    :noremap ,n :NERDTreeToggle<CR>
   " }
 
   " Gist {
@@ -240,31 +219,24 @@
   endif
   " }
 
-  set nocompatible
-  if has("autocmd")
-    filetype indent plugin on
-  endif
+  " Vroom
+  let g:vroom_write_all = 1
+  let g:vroom_use_spring = 1
+  let g:vroom_test_unit_command = 'testunit'
+
+  " Ctrlp
+  let g:ctrlp_map = '<Leader>t'
+  let g:ctrlp_cmd = 'CtrlP'
+
+  " Ctrlp + ctags
+  nnoremap <leader>y :CtrlPTag<cr>
+
+  " ctags + tagbar
+  noremap <silent> <Leader>b :TagbarToggle<CR>
+
+
+  " Ruby block told me to
+  runtime macros/matchit.vim
+
 " }
 
-cnoremap mk. !mkdir -p <c-r>=expand("%:h")<cr>/
-
-" Remove whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
-
-" For some reason this makes command line gems work. RVM issue i think
-set shell=/bin/sh
-
-" Test
-" map <Leader>r :wa<CR>:Rrunner<CR>
-" map <Leader>R :wa<CR>:.Rrunner<CR>
-let g:vroom_write_all = 1
-let g:vroom_use_spring = 1
-let g:vroom_test_unit_command = 'testunit'
-
-" Ruby block told me to
-runtime macros/matchit.vim
-
-map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
-
-let g:ctrlp_map = '<Leader>t'
-let g:ctrlp_cmd = 'CtrlP'
