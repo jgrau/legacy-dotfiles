@@ -23,8 +23,9 @@ pre:
 
 windows:
   - terminal:
-  - server: bundle exec thin start --socket $BOXEN_SOCKET_DIR/sofus
-  - console: bundle exec rails console
+  - guard: b/guard
+  - console: b/rails console
+  - server: b/thin start --socket $BOXEN_SOCKET_DIR/sofus
   - logs:
       layout: even-horizontal
       panes:
