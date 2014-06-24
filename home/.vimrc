@@ -34,8 +34,13 @@
   autocmd BufWritePre * :%s/\s\+$//e
 
   " For some reason this makes command line gems work. RVM issue i think
-  set shell=/bin/sh
+  " set shell=/bin/sh
+  set shell=$SHELL\ -l  " load shell for ruby version etc.
 
+  set list " Highlight trailings, stolen from @teoljungberg
+  set listchars=tab:>-,trail:.,extends:>,precedes:<
+
+  set tags=.git/tags " Use commit hook tags, see ~/.git_template
 " }
 
 " Vim UI {
@@ -237,4 +242,18 @@
   " Ruby block told me to
   runtime macros/matchit.vim
 
+" }
+
+" Functions {
+" Rename current file, thanks Gary Bernhardt via Ben Orenstein
+  function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+      exec ':saveas ' . new_name
+      exec ':silent !rm ' . old_name
+      redraw!
+    endif
+  endfunction
+  map <leader>r :call RenameFile()<cr>
 " }
