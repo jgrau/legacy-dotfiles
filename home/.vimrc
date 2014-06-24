@@ -18,8 +18,8 @@
   set foldlevel=1         "this is just what i use
 
   "set autochdir " Automatically always switch to the current files directory.
-  set shortmess=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
-  set history=1000 " Keep (a lot) more history
+  " set shortmess=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
+  " set history=1000 " Keep (a lot) more history
 
   " No needs for backups, I have Git for that
   set noswapfile
@@ -35,8 +35,6 @@
 
   " For some reason this makes command line gems work. RVM issue i think
   set shell=/bin/sh
-
-  map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
 
 " }
 
@@ -69,7 +67,7 @@
   au FocusLost * :wa " Save when losing focus
 
   set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-  set pastetoggle=<F2>
+  " set pastetoggle=<F2>
 
   " GVim {
     if has("gui_running")
@@ -115,31 +113,31 @@
   set smarttab
   set expandtab " Tabs are spaces
 
-  "set sw=2
-  "set sts=2
-  set tabstop=2 " Tabs are 2 spaces
-  set backspace=2 " Backspace back 2 spaces
-  set shiftwidth=2 " Even if there are tabs, preview as 2 spaces
+  " set sw=2
+  " set sts=2
+  " set tabstop=2 " Tabs are 2 spaces
+  " set backspace=2 " Backspace back 2 spaces
+  " set shiftwidth=2 " Even if there are tabs, preview as 2 spaces
 
   " Man pager
-  let $PAGER=''
+  " let $PAGER=''
 " }
 
 " Key Mapping {
   " Press i to enter insert mode, and ii to exit.
   imap ii <Esc>
-  map <S-C-J> <C-W>j<C-W>_
-  map <S-C-K> <C-W>k<C-W>_
-  map <S-C-L> <C-W>l<C-W>_
-  map <S-C-H> <C-W>h<C-W>_
-  map <S-C-K> <C-W>k<C-W>_
+  " map <S-C-J> <C-W>j<C-W>_
+  " map <S-C-K> <C-W>k<C-W>_
+  " map <S-C-L> <C-W>l<C-W>_
+  " map <S-C-H> <C-W>h<C-W>_
+  " map <S-C-K> <C-W>k<C-W>_
   map <C-J> <C-W>j
   map <C-K> <C-W>k
   map <C-L> <C-W>l
   map <C-H> <C-W>h
   map <C-K> <C-W>k
-  map <S-H> gT
-  map <S-L> gt
+  " map <S-H> gT
+  " map <S-L> gt
 
   " Shift key fixes
   " cmap W w
@@ -162,6 +160,9 @@
   :noremap ,d :bd<CR>
   cmap w!! w !sudo tee %
   map ,c :cd %:p:h<CR>
+
+  " Ruby 1.8 -> 1.9 Hash syntax
+  map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
 " }
 
 
@@ -170,7 +171,6 @@
     let NERDTreeChDirMode = 1
     let NERDTreeWinSize=20
     let NERDTreeQuitOnOpen=1
-
 
     :noremap ,n :NERDTreeToggle<CR>
   " }
@@ -191,14 +191,14 @@
 
   " Fugitive {
     map <Leader>gc :Gcommit
-    map <Leader>gs :Gstatus
+    map <Leader>gs :Gstatus<CR>
   " }
 
   " Surround {
     let b:surround_{char2nr('=')} = "<%= \r %>"
     let b:surround_{char2nr('-')} = "<% \r %>"
   " }
-  "
+
   " Syntastic {
     let g:syntastic_ruby_checkers = ['mri', 'rubocop']
     let g:syntastic_coffee_coffeelint_args="-f .coffeelint.json"
@@ -209,7 +209,7 @@
   " Airline {
     let g:airline_powerline_fonts = 1
   " }
-  "
+
   " Tabular {
   if exists(":Tabularize")
     nmap <Leader>a= :Tabularize /=<CR>
@@ -234,9 +234,7 @@
   " ctags + tagbar
   noremap <silent> <Leader>b :TagbarToggle<CR>
 
-
   " Ruby block told me to
   runtime macros/matchit.vim
 
 " }
-
