@@ -12,10 +12,17 @@
   filetype plugin indent on " Automatically change file types.
 
   "folding settings
-  set foldmethod=indent   "fold based on indent
-  set foldnestmax=10      "deepest fold is 10 levels
-  set nofoldenable        "dont fold by default
-  set foldlevel=1         "this is just what i use
+  set foldmethod=indent " fold based on indent
+  set foldnestmax=10    " deepest fold is 10 levels
+  set nofoldenable      " dont fold by default
+  set foldlevelstart=0
+
+  " Space to toggle folds.
+  nnoremap <Space> za
+  vnoremap <Space> za
+
+  " "Refocus" folds
+  nnoremap ,z zMzvzz
 
   "set autochdir " Automatically always switch to the current files directory.
   " set shortmess=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
@@ -150,6 +157,21 @@
   " cmap wQ wq
   " cmap Q q
 
+  " Move lines
+  nnoremap ∆ :m .+1<CR>==
+  nnoremap ˚ :m .-2<CR>==
+  inoremap ∆ <Esc>:m .+1<CR>==gi
+  inoremap ˚ <Esc>:m .-2<CR>==gi
+  vnoremap ∆ :m '>+1<CR>gv=gv
+  vnoremap ˚ :m '<-2<CR>gv=gv
+
+  nnoremap <A-j> :m .+1<CR>==
+  nnoremap <A-k> :m .-2<CR>==
+  inoremap <A-j> <Esc>:m .+1<CR>==gi
+  inoremap <A-k> <Esc>:m .-2<CR>==gi
+  vnoremap <A-j> :m '>+1<CR>gv=gv
+  vnoremap <A-k> :m '<-2<CR>gv=gv
+
   " Quickly edit/reload the vimrc file
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
   nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -227,6 +249,7 @@
   " Vroom
   let g:vroom_write_all = 1
   let g:vroom_use_spring = 1
+  let g:vroom_use_dispatch = 1
   let g:vroom_test_unit_command = 'testunit'
 
   " Ctrlp
@@ -255,5 +278,5 @@
       redraw!
     endif
   endfunction
-  map <leader>r :call RenameFile()<cr>
+  map <leader>mv :call RenameFile()<cr>
 " }
