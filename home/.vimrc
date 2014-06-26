@@ -229,7 +229,6 @@
   " Syntastic {
     let g:syntastic_ruby_checkers = ['mri', 'rubocop']
     let g:syntastic_coffee_coffeelint_args="-f .coffeelint.json"
-    let g:syntastic_quiet_messages = {'level': 'warnings'}
     let g:syntastic_mode_map = { 'passive_filetypes': ['ruby'] }
   " }
 
