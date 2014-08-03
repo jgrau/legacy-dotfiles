@@ -12,14 +12,21 @@
   filetype plugin indent on " Automatically change file types.
 
   "folding settings
-  set foldmethod=indent   "fold based on indent
-  set foldnestmax=10      "deepest fold is 10 levels
-  set nofoldenable        "dont fold by default
-  set foldlevel=1         "this is just what i use
+  set foldmethod=indent " fold based on indent
+  set foldnestmax=10    " deepest fold is 10 levels
+  set nofoldenable      " dont fold by default
+  set foldlevelstart=0
+
+  " Space to toggle folds.
+  nnoremap <Space> za
+  vnoremap <Space> za
+
+  " "Refocus" folds
+  nnoremap ,z zMzvzz
 
   "set autochdir " Automatically always switch to the current files directory.
-  set shortmess=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
-  set history=1000 " Keep (a lot) more history
+  " set shortmess=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
+  " set history=1000 " Keep (a lot) more history
 
   " No needs for backups, I have Git for that
   set noswapfile
@@ -34,10 +41,13 @@
   autocmd BufWritePre * :%s/\s\+$//e
 
   " For some reason this makes command line gems work. RVM issue i think
-  set shell=/bin/sh
+  " set shell=/bin/sh
+  set shell=$SHELL\ -l  " load shell for ruby version etc.
 
-  map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
+  set list " Highlight trailings, stolen from @teoljungberg
+  set listchars=tab:>-,trail:.,extends:>,precedes:<
 
+  set tags=.git/tags " Use commit hook tags, see ~/.git_template
 " }
 
 " Vim UI {
@@ -63,13 +73,13 @@
     set ignorecase " Case insensitive search
     set smartcase " Case sensitive when uppercase is present
     set incsearch " Search as you type
-    set hlsearch " Highlight search matches
+    " set hlsearch " Highlight search matches
   " }
 
   au FocusLost * :wa " Save when losing focus
 
   set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-  set pastetoggle=<F2>
+  " set pastetoggle=<F2>
 
   " GVim {
     if has("gui_running")
@@ -115,37 +125,52 @@
   set smarttab
   set expandtab " Tabs are spaces
 
-  "set sw=2
-  "set sts=2
-  set tabstop=2 " Tabs are 2 spaces
-  set backspace=2 " Backspace back 2 spaces
-  set shiftwidth=2 " Even if there are tabs, preview as 2 spaces
+  " set sw=2
+  " set sts=2
+  " set tabstop=2 " Tabs are 2 spaces
+  " set backspace=2 " Backspace back 2 spaces
+  " set shiftwidth=2 " Even if there are tabs, preview as 2 spaces
 
   " Man pager
-  let $PAGER=''
+  " let $PAGER=''
 " }
 
 " Key Mapping {
   " Press i to enter insert mode, and ii to exit.
   imap ii <Esc>
-  map <S-C-J> <C-W>j<C-W>_
-  map <S-C-K> <C-W>k<C-W>_
-  map <S-C-L> <C-W>l<C-W>_
-  map <S-C-H> <C-W>h<C-W>_
-  map <S-C-K> <C-W>k<C-W>_
+  " map <S-C-J> <C-W>j<C-W>_
+  " map <S-C-K> <C-W>k<C-W>_
+  " map <S-C-L> <C-W>l<C-W>_
+  " map <S-C-H> <C-W>h<C-W>_
+  " map <S-C-K> <C-W>k<C-W>_
   map <C-J> <C-W>j
   map <C-K> <C-W>k
   map <C-L> <C-W>l
   map <C-H> <C-W>h
   map <C-K> <C-W>k
-  map <S-H> gT
-  map <S-L> gt
+  " map <S-H> gT
+  " map <S-L> gt
 
   " Shift key fixes
   " cmap W w
   " cmap WQ wq
   " cmap wQ wq
   " cmap Q q
+
+  " Move lines
+  nnoremap ∆ :m .+1<CR>==
+  nnoremap ˚ :m .-2<CR>==
+  inoremap ∆ <Esc>:m .+1<CR>==gi
+  inoremap ˚ <Esc>:m .-2<CR>==gi
+  vnoremap ∆ :m '>+1<CR>gv=gv
+  vnoremap ˚ :m '<-2<CR>gv=gv
+
+  nnoremap <A-j> :m .+1<CR>==
+  nnoremap <A-k> :m .-2<CR>==
+  inoremap <A-j> <Esc>:m .+1<CR>==gi
+  inoremap <A-k> <Esc>:m .-2<CR>==gi
+  vnoremap <A-j> :m '>+1<CR>gv=gv
+  vnoremap <A-k> :m '<-2<CR>gv=gv
 
   " Quickly edit/reload the vimrc file
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -162,6 +187,9 @@
   :noremap ,d :bd<CR>
   cmap w!! w !sudo tee %
   map ,c :cd %:p:h<CR>
+
+  " Ruby 1.8 -> 1.9 Hash syntax
+  map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
 " }
 
 
@@ -170,7 +198,6 @@
     let NERDTreeChDirMode = 1
     let NERDTreeWinSize=20
     let NERDTreeQuitOnOpen=1
-
 
     :noremap ,n :NERDTreeToggle<CR>
   " }
@@ -191,25 +218,24 @@
 
   " Fugitive {
     map <Leader>gc :Gcommit
-    map <Leader>gs :Gstatus
+    map <Leader>gs :Gstatus<CR>
   " }
 
   " Surround {
     let b:surround_{char2nr('=')} = "<%= \r %>"
     let b:surround_{char2nr('-')} = "<% \r %>"
   " }
-  "
+
   " Syntastic {
     let g:syntastic_ruby_checkers = ['mri', 'rubocop']
     let g:syntastic_coffee_coffeelint_args="-f .coffeelint.json"
-    let g:syntastic_quiet_messages = {'level': 'warnings'}
     let g:syntastic_mode_map = { 'passive_filetypes': ['ruby'] }
   " }
 
   " Airline {
     let g:airline_powerline_fonts = 1
   " }
-  "
+
   " Tabular {
   if exists(":Tabularize")
     nmap <Leader>a= :Tabularize /=<CR>
@@ -222,6 +248,7 @@
   " Vroom
   let g:vroom_write_all = 1
   let g:vroom_use_spring = 1
+  let g:vroom_use_dispatch = 1
   let g:vroom_test_unit_command = 'testunit'
 
   " Ctrlp
@@ -234,9 +261,21 @@
   " ctags + tagbar
   noremap <silent> <Leader>b :TagbarToggle<CR>
 
-
   " Ruby block told me to
   runtime macros/matchit.vim
 
 " }
 
+" Functions {
+" Rename current file, thanks Gary Bernhardt via Ben Orenstein
+  function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+      exec ':saveas ' . new_name
+      exec ':silent !rm ' . old_name
+      redraw!
+    endif
+  endfunction
+  map <leader>mv :call RenameFile()<cr>
+" }
