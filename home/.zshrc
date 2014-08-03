@@ -1,3 +1,4 @@
+source "$HOME/.zshenv"
 source "$HOME/.antigen/antigen.zsh"
 
 # Load the oh-my-zsh's library.
