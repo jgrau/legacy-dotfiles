@@ -61,3 +61,5 @@ setopt nonomatch
 # export PATH="/usr/local/heroku/bin:$PATH"
 export DEFAULT_USER=jgrau
 export EDITOR='vim'
+
+eval "$(direnv hook zsh)"
