@@ -12,7 +12,6 @@ antigen bundles <<EOBUNDLES
   # Tools of the trade
   brew
   gem
-  bundler
   capistrano
 
   # More tools
