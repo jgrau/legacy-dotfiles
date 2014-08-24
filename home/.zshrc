@@ -48,6 +48,11 @@ alias mvim="reattach-to-user-namespace mvim"
 alias vim="reattach-to-user-namespace vim"
 alias work="cd ~/Sites $1"
 alias reload="source ~/.zshrc"
+alias gff="git flow feature"
+alias gffc="git flow feature checkout"
+alias gffs="git flow feature start"
+alias gfff="git flow feature finish"
+alias gffp="git flow feature publish"
 setopt nonomatch
 # export PATH=/usr/local/bin:/usr/local/share/npm/bin:$PATH:~/bin
 # export PATH=$PATH:/Users/jgrau/pear/bin
