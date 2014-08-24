@@ -179,10 +179,6 @@
   " Quick yanking to the end of the line
   nmap Y y$
 
-  " Jump to matching pairs easily, with Tab
-  nnoremap <Tab> %
-  vnoremap <Tab> %
-
   " Key mappings
   :noremap ,d :bd<CR>
   cmap w!! w !sudo tee %
@@ -230,6 +226,7 @@
     let g:syntastic_ruby_checkers = ['mri', 'rubocop']
     let g:syntastic_coffee_coffeelint_args="-f .coffeelint.json"
     let g:syntastic_mode_map = { 'passive_filetypes': ['ruby'] }
+    let g:syntastic_always_populate_loc_list = 1
   " }
 
   " Airline {
@@ -245,11 +242,9 @@
   endif
   " }
 
-  " Vroom
-  let g:vroom_write_all = 1
-  let g:vroom_use_spring = 1
-  let g:vroom_use_dispatch = 1
-  let g:vroom_test_unit_command = 'testunit'
+  " Rails testing
+  map <leader>R :wa<CR>:.Rrunner<CR>
+  map <leader>r :wa<CR>:Rrunner<CR>
 
   " Ctrlp
   let g:ctrlp_map = '<Leader>t'
