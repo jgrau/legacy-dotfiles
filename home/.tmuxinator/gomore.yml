@@ -22,7 +22,8 @@ pre:
 # tmux_command: tmux -CC
 
 windows:
-  - terminal: mvim .
+  - vim: vim .
+  - console:
   - guard: guard
   - console: rails console
   - log: tail -f log/development.log
