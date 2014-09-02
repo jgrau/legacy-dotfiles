@@ -54,6 +54,8 @@
   if &t_Co >= 256 || has("gui_running")
     colorscheme solarized
     set background=dark
+    let g:solarized_visibility = "high"
+    let g:solarized_contrast = "high"
   endif
 
   if &t_Co > 2 || has("gui_running")
@@ -273,4 +275,13 @@
     endif
   endfunction
   map <leader>mv :call RenameFile()<cr>
+
+  " Copy current buffer path relative to root of VIM session to system clipboard
+  nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+
+  " Copy current filename to system clipboard
+  nnoremap <Leader>yf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+
+  " Copy current buffer path without filename to system clipboard
+  nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 " }
