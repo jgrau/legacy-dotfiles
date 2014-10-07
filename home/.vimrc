@@ -120,44 +120,14 @@
   " }
 " }
 
-" Formatting {
-  " Be smart, and awesome, about indentation
-  set smartindent
-  set copyindent
-  set smarttab
-  set expandtab " Tabs are spaces
-
-  " set sw=2
-  " set sts=2
-  " set tabstop=2 " Tabs are 2 spaces
-  " set backspace=2 " Backspace back 2 spaces
-  " set shiftwidth=2 " Even if there are tabs, preview as 2 spaces
-
-  " Man pager
-  " let $PAGER=''
-" }
-
 " Key Mapping {
   " Press i to enter insert mode, and ii to exit.
   imap ii <Esc>
-  " map <S-C-J> <C-W>j<C-W>_
-  " map <S-C-K> <C-W>k<C-W>_
-  " map <S-C-L> <C-W>l<C-W>_
-  " map <S-C-H> <C-W>h<C-W>_
-  " map <S-C-K> <C-W>k<C-W>_
   map <C-J> <C-W>j
   map <C-K> <C-W>k
   map <C-L> <C-W>l
   map <C-H> <C-W>h
   map <C-K> <C-W>k
-  " map <S-H> gT
-  " map <S-L> gt
-
-  " Shift key fixes
-  " cmap W w
-  " cmap WQ wq
-  " cmap wQ wq
-  " cmap Q q
 
   " Move lines
   nnoremap ∆ :m .+1<CR>==
@@ -244,9 +214,28 @@
   endif
   " }
 
-  " Rails testing
-  map <leader>R :wa<CR>:.Rrunner<CR>
-  map <leader>r :wa<CR>:Rrunner<CR>
+  " Rails testing {
+    " Test runner {
+      map <leader>R :wa<CR>:.Rrunner<CR>
+      map <leader>r :wa<CR>:Rrunner<CR>
+    " }
+
+    " Vroom {
+      " let g:vroom_use_spring = 1
+      " let g:vroom_use_dispatch = 1
+      " let g:vroom_clear_screen = 1
+      " let g:vroom_use_colors = 1
+      " let g:vroom_use_vimux = 1
+    " }
+    "
+    " Thoughbot rspec.vim {
+      let g:rspec_command = "Dispatch rspec {spec}"
+      map <Leader>r :call RunCurrentSpecFile()<CR>
+      map <Leader>R :call RunNearestSpec()<CR>
+      map <Leader>l :call RunLastSpec()<CR>
+      map <Leader>a :call RunAllSpecs()<CR>
+    " }
+  " }
 
   " Ctrlp
   let g:ctrlp_map = '<Leader>t'
@@ -277,11 +266,11 @@
   map <leader>mv :call RenameFile()<cr>
 
   " Copy current buffer path relative to root of VIM session to system clipboard
-  nnoremap <Leader>yp :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
+  nnoremap <Leader>ip :let @*=expand("%")<cr>:echo "Copied file path to clipboard"<cr>
 
   " Copy current filename to system clipboard
-  nnoremap <Leader>yf :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
+  nnoremap <Leader>if :let @*=expand("%:t")<cr>:echo "Copied file name to clipboard"<cr>
 
   " Copy current buffer path without filename to system clipboard
-  nnoremap <Leader>yd :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
+  nnoremap <Leader>id :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 " }

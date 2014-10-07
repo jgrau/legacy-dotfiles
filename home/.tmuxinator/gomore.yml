@@ -23,7 +23,6 @@ pre:
 
 windows:
   - vim: vim .
-  - console:
-  - guard: guard
+  - terminal:
   - console: rails console
   - log: tail -f log/development.log

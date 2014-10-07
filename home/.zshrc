@@ -45,7 +45,7 @@ antigen apply
 
 # Customize to your needs...
 alias mvim="reattach-to-user-namespace mvim"
-alias vim="reattach-to-user-namespace vim"
+alias vim="reattach-to-user-namespace mvim -v"
 alias work="cd ~/Sites $1"
 alias reload="source ~/.zshrc"
 alias gff="git flow feature"
