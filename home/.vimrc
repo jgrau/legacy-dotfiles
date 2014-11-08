@@ -189,6 +189,10 @@
     map <Leader>gs :Gstatus<CR>
   " }
 
+  " Git Comment {
+    let g:github_user = 'jgrau'
+  " }
+
   " Surround {
     let b:surround_{char2nr('=')} = "<%= \r %>"
     let b:surround_{char2nr('-')} = "<% \r %>"
