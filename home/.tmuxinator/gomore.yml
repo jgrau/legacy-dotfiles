@@ -26,3 +26,4 @@ windows:
   - terminal:
   - console: rails console
   - log: tail -f log/development.log
+  - foreman: foreman start -f Procfile.jgrau

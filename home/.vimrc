@@ -114,6 +114,7 @@
     if has("gui_macvim")
       set wildignore+=vendor/bundle/**
       set wildignore+=bin/**
+      set wildignore+=*/tmp/*,*.so,*.swp,*.zip
       set guifont=Menlo\ Regular\ for\ Powerline:h12
       set transparency=7
     endif
@@ -215,6 +216,16 @@
     vmap <Leader>a= :Tabularize /=<CR>
     nmap <Leader>a: :Tabularize /:\zs<CR>
     vmap <Leader>a: :Tabularize /:\zs<CR>
+
+    " Align ruby symbol hashes on the hash marker
+    AddTabularPattern! rbshash /\s\?\w\+:[^:]/l0l0
+    AddTabularPattern! rbhash /^[^=]*\zs=>
+
+    " Mappings for ruby hash rocket and symbol hashes
+    " nnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
+    " vnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
+    " nnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
+    " vnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
   endif
   " }
 
@@ -254,6 +265,16 @@
   " Ruby block told me to
   runtime macros/matchit.vim
 
+  " Flay
+  let g:flay_on_open = 0
+  let g:flay_on_save = 0
+
+  " Reek
+  let g:reek_always_show = 0
+  let g:reek_on_loading = 0
+
+  " Github Comment
+  let g:github_user = 'jgrau'
 " }
 
 " Functions {
