@@ -1,16 +1,13 @@
-# ~/.tmuxinator/gomore.yml
+# ~/.tmuxinator/test-project.yml
 
-name: gomore
-root: ~/src/gomore
+name: test-project
+root: ~/
 
 # Optional tmux socket
 # socket_name: foo
 
 # Runs before everything. Use it to start daemons etc.
 # pre: sudo /etc/rc.d/mysqld start
-pre:
-  - export RBENV_DIR=
-  - export RBENV_VERSION=
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
@@ -19,16 +16,13 @@ pre:
 # tmux_options: -f ~/.tmux.mac.conf
 
 # Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
-# tmux_command: tmux -CC
+# tmux_command: byobu
 
 windows:
   - editor:
-      layout: 8574,364x101,0,0[364x80,0,0,0,364x20,0,81,5]
+      layout: main-vertical
       panes:
         - vim
-        -
-        -
-  - terminal:
-  - console: rails console
-  - log: tail -f log/development.log
-  - foreman: foreman start -f Procfile.jgrau
+        - guard
+  - server: bundle exec rails s
+  - logs: tail -f log/development.log

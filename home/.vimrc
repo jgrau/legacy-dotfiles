@@ -231,8 +231,8 @@
 
   " Rails testing {
     " Test runner {
-      map <leader>R :wa<CR>:.Rrunner<CR>
-      map <leader>r :wa<CR>:Rrunner<CR>
+      " map <leader>R :wa<CR>:.Rrunner<CR>
+      " map <leader>r :wa<CR>:Rrunner<CR>
     " }
 
     " Vroom {
@@ -244,7 +244,8 @@
     " }
     "
     " Thoughbot rspec.vim {
-      let g:rspec_command = "Dispatch rspec {spec}"
+      " let g:rspec_command = "Dispatch rspec {spec}"
+      let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
       map <Leader>r :call RunCurrentSpecFile()<CR>
       map <Leader>R :call RunNearestSpec()<CR>
       map <Leader>l :call RunLastSpec()<CR>
