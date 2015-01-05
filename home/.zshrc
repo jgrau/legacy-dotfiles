@@ -3,6 +3,7 @@ source "$HOME/.antigen/antigen.zsh"
 
 # Load the oh-my-zsh's library.
 # antigen use oh-my-zsh
+antigen bundle robbyrussell/oh-my-zsh lib/
 
 antigen bundles <<EOBUNDLES
   # Git and github autocompletions and aliases
@@ -28,8 +29,9 @@ antigen bundles <<EOBUNDLES
 
   git-flow
 
-  z
   sindresorhus/pure
+
+  rupa/z
 EOBUNDLES
 
 # Tracks your most used directories, based on 'frecency'. And its accompanying
