@@ -6,51 +6,42 @@ source "$HOME/.antigen/antigen.zsh"
 antigen bundle robbyrussell/oh-my-zsh lib/
 
 antigen bundles <<EOBUNDLES
-  # Git and github autocompletions and aliases
+  # Theme
+  sindresorhus/pure
+
+  # # Git and github autocompletions and aliases
   git
   # git-extras
+  git-flow
 
-  # Tools of the trade
+  # # Tools of the trade
   # brew
   # gem
   # capistrano
 
-  # More tools
+  # # More tools
   # vagrant
   # tmux
 
-  # Meta
+  # # Meta
   # tmuxinator
   # command-not-found
-  # zsh-users/zsh-syntax-highlighting
+  zsh-users/zsh-syntax-highlighting
+  zsh-users/zsh-history-substring-search
+
   # colored-man
   # history
   # history-substring-search
 
-  git-flow
-
-  sindresorhus/pure
-
+  # # Utilities
   rupa/z
 EOBUNDLES
 
-# Tracks your most used directories, based on 'frecency'. And its accompanying
-# setup code.
-# antigen-bundle z
-# antigen bundle sindresorhus/pure
-# add-zsh-hook precmd _z_precmd
-# function _z_precmd {
-#     _z --add "$PWD"
-# }
-
-# Load the theme.
-# antigen theme desyncr/zshrc themes/af-magic-mod
+# antigen-update
+# antigen-selfupdate
 
 # Tell antigen that you're done.
 antigen apply
-
-# antigen-update
-# antigen-selfupdate
 
 # Customize to your needs...
 alias mvim="reattach-to-user-namespace mvim"
@@ -64,6 +55,7 @@ alias gfff="git flow feature finish"
 alias gffp="git flow feature publish"
 alias gfft="git flow feature track"
 alias ppr="git flow feature publish \$(current_branch) && hub pull-request"
+alias zshbench='reload && /usr/bin/time zsh -i -c exit'
 
 setopt nonomatch
 # export PATH=/usr/local/bin:/usr/local/share/npm/bin:$PATH:~/bin
@@ -73,5 +65,8 @@ setopt nonomatch
 # export PATH="/usr/local/heroku/bin:$PATH"
 export DEFAULT_USER=jgrau
 export EDITOR='vim'
+export PURE_GIT_PULL=0
+
+bindkey '^R' history-incremental-search-backward
 
 # eval "$(direnv hook zsh)"

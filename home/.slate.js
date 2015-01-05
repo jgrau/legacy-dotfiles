@@ -121,8 +121,9 @@ slate.bindAll({
     // direct focus
     c: $.focus('Google Chrome'),
     g: $.focus('GitX'),
-    t: $.focus('iTerm'),
+    x: $.focus('iTerm'),
     p: $.focus('Spotify'),
+    s: $.focus('Slack'),
     f: $.focus('Flow'),
 
     // utility functions

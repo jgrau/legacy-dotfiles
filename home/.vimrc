@@ -69,9 +69,14 @@
   set hidden " Hide buffers, rather than close them
   set showmatch " Show matching of: () [] {}
   set matchpairs+=<:> " Match <> (HTML)
-  " set number  " always show line numbers"
+  set number  " always show line numbers"
+  set relativenumber
 
   " Searching {
+    set wildignore+=vendor/bundle/**
+    set wildignore+=bin/**
+    set wildignore+=log/**
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip
     set ignorecase " Case insensitive search
     set smartcase " Case sensitive when uppercase is present
     set incsearch " Search as you type
@@ -112,9 +117,6 @@
 
   " MVIM {
     if has("gui_macvim")
-      set wildignore+=vendor/bundle/**
-      set wildignore+=bin/**
-      set wildignore+=*/tmp/*,*.so,*.swp,*.zip
       set guifont=Menlo\ Regular\ for\ Powerline:h12
       set transparency=7
     endif
@@ -167,6 +169,7 @@
     let NERDTreeChDirMode = 1
     let NERDTreeWinSize=20
     let NERDTreeQuitOnOpen=1
+    let NERDTreeHijackNetrw=1
 
     :noremap ,n :NERDTreeToggle<CR>
   " }
@@ -229,6 +232,14 @@
   endif
   " }
 
+  " Hardtime {
+    let g:hardtime_timeout = 500
+    let g:hardtime_showmsg = 1
+    let g:hardtime_ignore_quickfix = 1
+    let g:hardtime_allow_different_key = 1
+    let g:hardtime_maxcount = 5
+  " }
+
   " Rails testing {
     " Test runner {
       " map <leader>R :wa<CR>:.Rrunner<CR>
@@ -266,9 +277,9 @@
   " Ruby block told me to
   runtime macros/matchit.vim
 
-  " Flay
-  let g:flay_on_open = 0
-  let g:flay_on_save = 0
+  " " Flay
+  " let g:flay_on_open = 0
+  " let g:flay_on_save = 0
 
   " Reek
   let g:reek_always_show = 0
@@ -276,6 +287,10 @@
 
   " Github Comment
   let g:github_user = 'jgrau'
+
+  " Greplace
+  set grepprg=ack
+  let g:grep_cmd_opts = '--noheading'
 " }
 
 " Functions {
