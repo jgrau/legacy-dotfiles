@@ -118,13 +118,13 @@ slate.bindAll({
     '2': $('toss', '1', 'resize'),
     '3': $('toss', '2', 'resize'),
 
-    // direct focus
-    c: $.focus('Google Chrome'),
-    g: $.focus('GitX'),
-    x: $.focus('iTerm'),
-    p: $.focus('Spotify'),
-    s: $.focus('Slack'),
-    f: $.focus('Flow'),
+    // // direct focus
+    // c: $.focus('Google Chrome'),
+    // g: $.focus('GitX'),
+    // x: $.focus('iTerm'),
+    // p: $.focus('Spotify'),
+    // s: $.focus('Slack'),
+    // f: $.focus('Flow'),
 
     // utility functions
     f1: 'relaunch',

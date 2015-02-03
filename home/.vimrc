@@ -5,7 +5,8 @@
 
 " Basics {
   set nocompatible " No vi compatility
-  let mapleader="," " Mapleader
+  " let mapleader="," " Mapleader
+  let mapleader = "\<Space>"
 " }
 
 " General {
@@ -17,13 +18,6 @@
   set nofoldenable      " dont fold by default
   set foldlevelstart=0
 
-  " Space to toggle folds.
-  nnoremap <Space> za
-  vnoremap <Space> za
-
-  " "Refocus" folds
-  nnoremap ,z zMzvzz
-
   "set autochdir " Automatically always switch to the current files directory.
   " set shortmess=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
   " set history=1000 " Keep (a lot) more history
@@ -32,11 +26,6 @@
   set noswapfile
   set nobackup
 
-  " Source the vimrc file after saving it
-  if has("autocmd")
-    autocmd bufwritepost .vimrc source $MYVIMRC
-  endif
-  "
   " Remove whitespace on save
   autocmd BufWritePre * :%s/\s\+$//e
 
@@ -51,16 +40,8 @@
 " }
 
 " Vim UI {
-  if &t_Co >= 256 || has("gui_running")
-    colorscheme solarized
-    set background=dark
-    let g:solarized_visibility = "high"
-    let g:solarized_contrast = "high"
-  endif
-
   if &t_Co > 2 || has("gui_running")
-  " switch syntax highlighting on, when the terminal has colors
-    syntax on
+    syntax on " switch syntax highlighting on, when the terminal has colors
   endif
 
   set ruler " Enable cursor position
@@ -77,6 +58,7 @@
     set wildignore+=bin/**
     set wildignore+=log/**
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+    set wildignore+=.git/**
     set ignorecase " Case insensitive search
     set smartcase " Case sensitive when uppercase is present
     set incsearch " Search as you type
@@ -86,14 +68,16 @@
   au FocusLost * :wa " Save when losing focus
 
   set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-  " set pastetoggle=<F2>
 
   " GVim {
     if has("gui_running")
-      color solarized " GUI Colorscheme
+      colorscheme solarized " GUI Colorscheme
       set background=dark
       set guifont=Menlo\ Regular\ for\ Powerline:h12
       set lines=999 columns=9999 " Start full screen
+
+      let g:solarized_visibility = "high"
+      let g:solarized_contrast = "high"
 
       " GVIm options {
         set guioptions-=m " Remove menu bar
@@ -118,7 +102,7 @@
   " MVIM {
     if has("gui_macvim")
       set guifont=Menlo\ Regular\ for\ Powerline:h12
-      set transparency=7
+      set transparency=5
     endif
   " }
 " }
@@ -161,6 +145,9 @@
 
   " Ruby 1.8 -> 1.9 Hash syntax
   map <Leader>s :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<CR>
+
+  " Quicksave
+  nnoremap <Leader>w :w<CR>
 " }
 
 
@@ -172,20 +159,6 @@
     let NERDTreeHijackNetrw=1
 
     :noremap ,n :NERDTreeToggle<CR>
-  " }
-
-  " Gist {
-    let g:gist_detect_filetype = 1
-    let g:gist_open_browser_after_post = 1
-  " }
-
-  " AutoCloseTag {
-    " .. for XML and XHTML as well
-    au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
-  " }
-
-  " Delimitmate {
-    au FileType * let b:delimitMate_autoclose = 1
   " }
 
   " Fugitive {
@@ -214,22 +187,22 @@
   " }
 
   " Tabular {
-  if exists(":Tabularize")
-    nmap <Leader>a= :Tabularize /=<CR>
-    vmap <Leader>a= :Tabularize /=<CR>
-    nmap <Leader>a: :Tabularize /:\zs<CR>
-    vmap <Leader>a: :Tabularize /:\zs<CR>
+    if exists(":Tabularize")
+      nmap <Leader>a= :Tabularize /=<CR>
+      vmap <Leader>a= :Tabularize /=<CR>
+      nmap <Leader>a: :Tabularize /:\zs<CR>
+      vmap <Leader>a: :Tabularize /:\zs<CR>
 
-    " Align ruby symbol hashes on the hash marker
-    AddTabularPattern! rbshash /\s\?\w\+:[^:]/l0l0
-    AddTabularPattern! rbhash /^[^=]*\zs=>
+      " Align ruby symbol hashes on the hash marker
+      AddTabularPattern! rbshash /\s\?\w\+:[^:]/l0l0
+      AddTabularPattern! rbhash /^[^=]*\zs=>
 
-    " Mappings for ruby hash rocket and symbol hashes
-    " nnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
-    " vnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
-    " nnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
-    " vnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
-  endif
+      " Mappings for ruby hash rocket and symbol hashes
+      " nnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
+      " vnoremap <silent> <Leader>ahr :Tabularize rbhash<CR>
+      " nnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
+      " vnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
+    endif
   " }
 
   " Hardtime {
@@ -249,18 +222,34 @@
     " Vroom {
       " let g:vroom_use_spring = 1
       " let g:vroom_use_dispatch = 1
-      " let g:vroom_clear_screen = 1
+      " let g:vroom_clear_screen = 0
       " let g:vroom_use_colors = 1
       " let g:vroom_use_vimux = 1
+      " let g:vroom_use_binstubs = 1
+      " let g:vroom_write_all  = 0
     " }
     "
     " Thoughbot rspec.vim {
       " let g:rspec_command = "Dispatch rspec {spec}"
-      let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
-      map <Leader>r :call RunCurrentSpecFile()<CR>
-      map <Leader>R :call RunNearestSpec()<CR>
-      map <Leader>l :call RunLastSpec()<CR>
-      map <Leader>a :call RunAllSpecs()<CR>
+      " let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+      " map <Leader>r :call RunCurrentSpecFile()<CR>
+      " map <Leader>R :call RunNearestSpec()<CR>
+      " map <Leader>l :call RunLastSpec()<CR>
+      " map <Leader>a :call RunAllSpecs()<CR>
+    " }
+    "
+    " Turbux {
+      let g:no_turbux_mappings = 1
+      " map <leader>r <Plug>SendTestToTmux
+      " map <leader>R <Plug>SendFocusedTestToTmux
+    " }
+
+    " Vim-test {
+    let g:test#strategy = 'terminal' " basic make dispatch vimux tslime terminal iterm
+    nmap <silent> <leader>R :TestNearest<CR>
+    nmap <silent> <leader>r :TestFile<CR>
+    nmap <silent> <leader>a :TestSuite<CR>
+    nmap <silent> <leader>l :TestLast<CR>
     " }
   " }
 
@@ -285,12 +274,14 @@
   let g:reek_always_show = 0
   let g:reek_on_loading = 0
 
-  " Github Comment
-  let g:github_user = 'jgrau'
+  " Expand region
+  vmap v <Plug>(expand_region_expand)
+  vmap <C-v> <Plug>(expand_region_shrink)
 
-  " Greplace
-  set grepprg=ack
-  let g:grep_cmd_opts = '--noheading'
+  " Ragtag
+  inoremap <M-o> <Esc>o
+  inoremap <C-j> <Down>
+  let g:ragtag_global_maps = 1
 " }
 
 " Functions {
@@ -315,3 +306,7 @@
   " Copy current buffer path without filename to system clipboard
   nnoremap <Leader>id :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 " }
+
+let g:ConqueTerm_FastMode = 0
+let g:ConqueTerm_Color = 0
+" let g:ConqueTerm_TERM = 'xterm'

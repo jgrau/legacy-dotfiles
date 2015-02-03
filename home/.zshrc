@@ -1,4 +1,3 @@
-source "$HOME/.zshenv"
 source "$HOME/.antigen/antigen.zsh"
 
 # Load the oh-my-zsh's library.
@@ -26,7 +25,7 @@ antigen bundles <<EOBUNDLES
   # # Meta
   # tmuxinator
   # command-not-found
-  zsh-users/zsh-syntax-highlighting
+  # zsh-users/zsh-syntax-highlighting
   zsh-users/zsh-history-substring-search
 
   # colored-man
@@ -64,9 +63,10 @@ setopt nonomatch
 ### Added by the Heroku Toolbelt
 # export PATH="/usr/local/heroku/bin:$PATH"
 export DEFAULT_USER=jgrau
-export EDITOR='vim'
+export EDITOR='mvim -v'
 export PURE_GIT_PULL=0
 
 bindkey '^R' history-incremental-search-backward
 
-# eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)"
+source "$HOME/.zshenv"

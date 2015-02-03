@@ -22,12 +22,7 @@ pre:
 # tmux_command: tmux -CC
 
 windows:
-  - editor:
-      layout: a6ed,364x101,0,0{276x101,0,0,0,87x101,277,0,7}
-      panes:
-        - vim
-        -
-  - terminal:
+  - terminal: mvim
   - console: rails console
   - log: tail -f log/development.log
   - foreman: foreman start -f Procfile.jgrau
