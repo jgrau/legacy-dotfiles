@@ -39,19 +39,19 @@
   set tags=.git/tags " Use commit hook tags, see ~/.git_template
 " }
 
-" Vim UI {
-  if &t_Co > 2 || has("gui_running")
-    syntax on " switch syntax highlighting on, when the terminal has colors
-  endif
-
   set ruler " Enable cursor position
   set showcmd  " Show incomplete CMDS at the bottom
-  set autoread " Auto read when file is changed
+  " set autoread " Auto read when file is changed
   set hidden " Hide buffers, rather than close them
   set showmatch " Show matching of: () [] {}
   set matchpairs+=<:> " Match <> (HTML)
   set number  " always show line numbers"
   set relativenumber
+
+  " check file change every 4 seconds ('CursorHold') and reload the buffer
+  " upon detecting change
+  set autoread
+  au CursorHold * checktime
 
   " Searching {
     set wildignore+=vendor/bundle/**
@@ -68,6 +68,17 @@
   au FocusLost * :wa " Save when losing focus
 
   set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+  " Vim UI {
+    if &t_Co > 2 || has("gui_running")
+      syntax on " switch syntax highlighting on, when the terminal has colors
+      colorscheme solarized " GUI Colorscheme
+      set background=dark
+      set guifont=Menlo\ Regular\ for\ Powerline:h12
+      let g:solarized_visibility = "high"
+      let g:solarized_contrast = "high"
+    endif
+  " }
 
   " GVim {
     if has("gui_running")
@@ -158,7 +169,7 @@
     let NERDTreeQuitOnOpen=1
     let NERDTreeHijackNetrw=1
 
-    :noremap ,n :NERDTreeToggle<CR>
+    :noremap <Leader>n :NERDTreeToggle<CR>
   " }
 
   " Fugitive {
@@ -245,11 +256,15 @@
     " }
 
     " Vim-test {
-    let g:test#strategy = 'terminal' " basic make dispatch vimux tslime terminal iterm
-    nmap <silent> <leader>R :TestNearest<CR>
-    nmap <silent> <leader>r :TestFile<CR>
-    nmap <silent> <leader>a :TestSuite<CR>
-    nmap <silent> <leader>l :TestLast<CR>
+    let g:test#strategy = 'vimux' " basic make dispatch vimux tslime terminal iterm
+    let VimuxUseNearest = 1
+    let g:VimuxHeight = "25"
+    let g:VimuxOrientation = "h"
+    nmap <silent> <leader>R :wa<CR>:TestNearest<CR>
+    nmap <silent> <leader>r :wa<CR>:TestFile<CR>
+    nmap <silent> <leader>a :wa<CR>:TestSuite<CR>
+    nmap <silent> <leader>l :wa<CR>:TestLast<CR>
+    nmap <silent> <leader>g :wa<CR>:TestVisit<CR>
     " }
   " }
 
