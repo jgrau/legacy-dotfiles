@@ -1,26 +1,67 @@
-" Setup Bundle Support {
-     execute pathogen#infect()
-     call pathogen#helptags()
-" }
-
 " Basics {
   set nocompatible " No vi compatility
-  " let mapleader="," " Mapleader
   let mapleader = "\<Space>"
 " }
 
-" General {
-  filetype plugin indent on " Automatically change file types.
+" Plugins {
+  call plug#begin('~/.vim/plugged')
 
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+  Plug 'tpope/vim-haml', { 'for': 'haml' }
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-cucumber'
+  Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-sleuth'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-ragtag'
+  Plug 'tpope/vim-sensible'
+  Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+  Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+  Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/syntastic', { 'for': ['ruby', 'javascript', 'css'] }
+  Plug 'rizzatti/funcoo.vim'
+  Plug 'rizzatti/dash.vim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'kchmck/vim-coffee-script'
+  Plug 'mileszs/ack.vim'
+  Plug 'bling/vim-airline'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'nelstrom/vim-textobj-rubyblock'
+  Plug 'kana/vim-textobj-user'
+  Plug 'godlygeek/tabular'
+  Plug 'kien/ctrlp.vim'
+  Plug 'sunaku/vim-ruby-minitest'
+  Plug 'vim-scripts/taglist.vim'
+  Plug 'majutsushi/tagbar'
+  Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'othree/html5.vim'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'dkprice/vim-easygrep'
+  Plug 'rking/ag.vim'
+  Plug 'terryma/vim-expand-region'
+  Plug 'gregsexton/gitv'
+  Plug 'janko-m/vim-test'
+  Plug 'benmills/vimux'
+  Plug 'ervandew/supertab'
+  Plug 'benekastah/neomake'
+
+  filetype plugin indent on                   " required!
+  call plug#end()
+" }
+
+" General {
   "folding settings
   set foldmethod=indent " fold based on indent
   set foldnestmax=10    " deepest fold is 10 levels
   set nofoldenable      " dont fold by default
   set foldlevelstart=0
-
-  "set autochdir " Automatically always switch to the current files directory.
-  " set shortmess=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
-  " set history=1000 " Keep (a lot) more history
 
   " No needs for backups, I have Git for that
   set noswapfile
@@ -29,9 +70,8 @@
   " Remove whitespace on save
   autocmd BufWritePre * :%s/\s\+$//e
 
-  " For some reason this makes command line gems work. RVM issue i think
-  " set shell=/bin/sh
-  set shell=$SHELL\ -l  " load shell for ruby version etc.
+  " Run Neomake on save
+  autocmd! BufWritePost * Neomake
 
   set list " Highlight trailings, stolen from @teoljungberg
   set listchars=tab:>-,trail:.,extends:>,precedes:<
@@ -41,17 +81,11 @@
 
   set ruler " Enable cursor position
   set showcmd  " Show incomplete CMDS at the bottom
-  " set autoread " Auto read when file is changed
+  set autoread " Auto read when file is changed
   set hidden " Hide buffers, rather than close them
   set showmatch " Show matching of: () [] {}
   set matchpairs+=<:> " Match <> (HTML)
   set number  " always show line numbers"
-  set relativenumber
-
-  " check file change every 4 seconds ('CursorHold') and reload the buffer
-  " upon detecting change
-  set autoread
-  au CursorHold * checktime
 
   " Searching {
     set wildignore+=vendor/bundle/**
@@ -64,8 +98,6 @@
     set incsearch " Search as you type
     " set hlsearch " Highlight search matches
   " }
-
-  au FocusLost * :wa " Save when losing focus
 
   set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
@@ -85,7 +117,7 @@
       colorscheme solarized " GUI Colorscheme
       set background=dark
       set guifont=Menlo\ Regular\ for\ Powerline:h12
-      set lines=999 columns=9999 " Start full screen
+      " set lines=999 columns=9999 " Start full screen
 
       let g:solarized_visibility = "high"
       let g:solarized_contrast = "high"
@@ -120,7 +152,6 @@
 
 " Key Mapping {
   " Press i to enter insert mode, and ii to exit.
-  imap ii <Esc>
   map <C-J> <C-W>j
   map <C-K> <C-W>k
   map <C-L> <C-W>l
@@ -177,10 +208,6 @@
     map <Leader>gs :Gstatus<CR>
   " }
 
-  " Git Comment {
-    let g:github_user = 'jgrau'
-  " }
-
   " Surround {
     let b:surround_{char2nr('=')} = "<%= \r %>"
     let b:surround_{char2nr('-')} = "<% \r %>"
@@ -214,14 +241,6 @@
       " nnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
       " vnoremap <silent> <Leader>ahs  :Tabularize rbshash<CR>
     endif
-  " }
-
-  " Hardtime {
-    let g:hardtime_timeout = 500
-    let g:hardtime_showmsg = 1
-    let g:hardtime_ignore_quickfix = 1
-    let g:hardtime_allow_different_key = 1
-    let g:hardtime_maxcount = 5
   " }
 
   " Rails testing {
@@ -260,17 +279,22 @@
     let VimuxUseNearest = 1
     let g:VimuxHeight = "25"
     let g:VimuxOrientation = "h"
-    nmap <silent> <leader>R :wa<CR>:TestNearest<CR>
-    nmap <silent> <leader>r :wa<CR>:TestFile<CR>
-    nmap <silent> <leader>a :wa<CR>:TestSuite<CR>
-    nmap <silent> <leader>l :wa<CR>:TestLast<CR>
-    nmap <silent> <leader>g :wa<CR>:TestVisit<CR>
+    nmap <silent> <leader>R :TestNearest<CR>
+    nmap <silent> <leader>r :TestFile<CR>
+    nmap <silent> <leader>a :TestSuite<CR>
+    nmap <silent> <leader>l :TestLast<CR>
+    nmap <silent> <leader>g :TestVisit<CR>
     " }
   " }
 
   " Ctrlp
   let g:ctrlp_map = '<Leader>t'
   let g:ctrlp_cmd = 'CtrlP'
+  let g:ctrlp_custom_ignore = {
+        \ 'dir':  'vendor/cache',
+        \ 'file': '\v\.(exe|so|dll)$',
+        \ 'link': 'some_bad_symbolic_links',
+        \ }
 
   " Ctrlp + ctags
   nnoremap <leader>y :CtrlPTag<cr>
@@ -280,14 +304,6 @@
 
   " Ruby block told me to
   runtime macros/matchit.vim
-
-  " " Flay
-  " let g:flay_on_open = 0
-  " let g:flay_on_save = 0
-
-  " Reek
-  let g:reek_always_show = 0
-  let g:reek_on_loading = 0
 
   " Expand region
   vmap v <Plug>(expand_region_expand)
@@ -321,7 +337,11 @@
   " Copy current buffer path without filename to system clipboard
   nnoremap <Leader>id :let @*=expand("%:h")<cr>:echo "Copied file directory to clipboard"<cr>
 " }
+" NeoVIM
 
-let g:ConqueTerm_FastMode = 0
-let g:ConqueTerm_Color = 0
-" let g:ConqueTerm_TERM = 'xterm'
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  " Hack to get C-h working in neovim
+  nmap <BS> <C-W>h
+  tnoremap <Esc> <C-\><C-n>
+endif

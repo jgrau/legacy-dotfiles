@@ -1,3 +1,4 @@
+source "$HOME/.zshenv"
 source "$HOME/.antigen/antigen.zsh"
 
 # Load the oh-my-zsh's library.
@@ -44,7 +45,8 @@ antigen apply
 
 # Customize to your needs...
 alias mvim="reattach-to-user-namespace mvim"
-alias vim="reattach-to-user-namespace mvim -v"
+# alias vim="reattach-to-user-namespace mvim -v"
+alias vim="nvim"
 alias work="cd ~/Sites $1"
 alias reload="source ~/.zshrc"
 alias gff="git flow feature"
@@ -69,4 +71,3 @@ export PURE_GIT_PULL=0
 bindkey '^R' history-incremental-search-backward
 
 eval "$(direnv hook zsh)"
-source "$HOME/.zshenv"
