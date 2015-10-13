@@ -96,7 +96,7 @@
     set ignorecase " Case insensitive search
     set smartcase " Case sensitive when uppercase is present
     set incsearch " Search as you type
-    " set hlsearch " Highlight search matches
+    set nohlsearch " Highlight search matches
   " }
 
   set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -218,6 +218,13 @@
     let g:syntastic_coffee_coffeelint_args="-f .coffeelint.json"
     let g:syntastic_mode_map = { 'passive_filetypes': ['ruby'] }
     let g:syntastic_always_populate_loc_list = 1
+    let g:neomake_verbose = 0
+    let g:neomake_ruby_enabled_makers = ['rubocop']
+  " }
+
+  " Neomake {
+    let g:neomake_verbose = 0
+    let g:neomake_ruby_enabled_makers = ['rubocop']
   " }
 
   " Airline {
