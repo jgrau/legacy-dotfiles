@@ -1,5 +1,6 @@
 source "$HOME/.zshenv"
 source "$HOME/.antigen/antigen.zsh"
+source /opt/boxen/homebrew/share/zsh/site-functions/_aws
 
 # Load the oh-my-zsh's library.
 # antigen use oh-my-zsh
