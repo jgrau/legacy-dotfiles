@@ -16,7 +16,7 @@
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-unimpaired'
   Plug 'tpope/vim-abolish'
-  Plug 'tpope/vim-sleuth'
+  " Plug 'tpope/vim-sleuth'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-dispatch'
@@ -51,12 +51,21 @@
   Plug 'benmills/vimux'
   Plug 'ervandew/supertab'
   Plug 'benekastah/neomake'
+  Plug 'Shougo/unite.vim'
+  Plug 'Quramy/vison', { 'for': 'json' }
 
   filetype plugin indent on                   " required!
   call plug#end()
 " }
 
 " General {
+  filetype indent on
+  filetype on
+  set smartindent
+  set tabstop=2
+  set shiftwidth=2
+  set expandtab
+
   "folding settings
   set foldmethod=indent " fold based on indent
   set foldnestmax=10    " deepest fold is 10 levels
@@ -215,16 +224,16 @@
 
   " Syntastic {
     let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+    let g:syntastic_javascript_checkers = ['standard']
     let g:syntastic_coffee_coffeelint_args="-f .coffeelint.json"
     let g:syntastic_mode_map = { 'passive_filetypes': ['ruby'] }
     let g:syntastic_always_populate_loc_list = 1
-    let g:neomake_verbose = 0
-    let g:neomake_ruby_enabled_makers = ['rubocop']
   " }
 
   " Neomake {
     let g:neomake_verbose = 0
     let g:neomake_ruby_enabled_makers = ['rubocop']
+    let g:neomake_javascript_enabled_makers = []
   " }
 
   " Airline {
