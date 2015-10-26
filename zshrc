@@ -1,6 +1,4 @@
-source "$HOME/.zshenv"
 source "$HOME/.antigen/antigen.zsh"
-source /opt/boxen/homebrew/share/zsh/site-functions/_aws
 
 # Load the oh-my-zsh's library.
 # antigen use oh-my-zsh
@@ -8,6 +6,7 @@ antigen bundle robbyrussell/oh-my-zsh lib/
 
 antigen bundles <<EOBUNDLES
   # Theme
+  mafredri/zsh-async
   sindresorhus/pure
 
   # # Git and github autocompletions and aliases
