@@ -6,7 +6,7 @@ fi
 
 vim -u $HOME/.vimrc +PlugInstall +qa
 
-if [ ! -e $HOME/.config/nvim/init ]; then
+if [ ! -e $HOME/.config/nvim/init.vim ]; then
   mkdir -p ${XDG_CONFIG_HOME:=$HOME/.config}
   ln -s ~/.vim $XDG_CONFIG_HOME/nvim
   ln -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
