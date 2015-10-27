@@ -1,5 +1,12 @@
 # Dotfiles
 
+## Usage
+
+```
+git clone https://github.com/jgrau/legacy-dotfiles.git ~/.dotfiles
+sh ~/.dotfiles/bootstrap.sh
+```
+
 ## Manual steps
 
 ### Gitx
