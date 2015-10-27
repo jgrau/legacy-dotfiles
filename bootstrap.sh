@@ -14,6 +14,8 @@ brew tap Homebrew/bundle
 brew bundle
 brew cleanup
 
+# Install the rcrc config file so the real rcup command uses our rcm configuration
+rcup -K rcrc
 rcup
 
 source './osx'
