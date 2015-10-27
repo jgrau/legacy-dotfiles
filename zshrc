@@ -71,3 +71,4 @@ export PURE_GIT_PULL=0
 bindkey '^R' history-incremental-search-backward
 
 eval "$(direnv hook zsh)"
+eval "$(rbenv init -)"
