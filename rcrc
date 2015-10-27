@@ -1,3 +1,2 @@
 EXCLUDES="README.md LICENSE Brewfile Caskfile osx bootstrap.sh"
-DOTFILES_DIRS="$HOME/src/dotfiles"
-SYMLINK_DIRS="config antigen"
+SYMLINK_DIRS="antigen"
