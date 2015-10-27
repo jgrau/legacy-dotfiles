@@ -18,4 +18,14 @@ brew cleanup
 rcup -K rcrc
 rcup
 
+# Ruby
+DEFAULT_RUBY='2.2.3'
+rbenv install --skip-existing $DEFAULT_RUBY
+rbenv global $DEFAULT_RUBY
+rbenv rehash
+
+# Now that we have a ruby we can install bundler
+# and other global gems
+gem install bundler git-up tmuxinator
+
 source './osx'
