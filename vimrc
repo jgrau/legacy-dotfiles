@@ -75,6 +75,7 @@
   " No needs for backups, I have Git for that
   set noswapfile
   set nobackup
+  set nowritebackup
 
   " Remove whitespace on save
   autocmd BufWritePre * :%s/\s\+$//e
